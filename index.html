@@ -1,0 +1,821 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <title>Henry Vertez | Especialista em Comportamento Humano & Terapeuta Social</title>
+    <!-- Google Fonts & Font Awesome -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: #fefcf7;
+            color: #1e2a2e;
+            line-height: 1.5;
+            scroll-behavior: smooth;
+        }
+
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 32px;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 24px 0;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .logo h1 {
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: -0.5px;
+            background: linear-gradient(135deg, #2c5f2d, #1e3a2f);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        .logo p {
+            font-size: 0.85rem;
+            color: #5b6e5c;
+            font-weight: 500;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 32px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            font-weight: 600;
+            color: #2d3e2b;
+            transition: 0.2s;
+        }
+
+        .nav-links a:hover {
+            color: #9b6a3c;
+        }
+
+        .hero {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 40px;
+            margin: 40px 0 60px;
+        }
+
+        .hero-content {
+            flex: 1;
+        }
+
+        .hero-badge {
+            background: #e9f0e6;
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            color: #2c5f2d;
+            margin-bottom: 20px;
+        }
+
+        .hero-content h2 {
+            font-size: 3rem;
+            font-weight: 800;
+            line-height: 1.2;
+            color: #1f3b2c;
+            margin-bottom: 20px;
+        }
+
+        .hero-content p {
+            font-size: 1.2rem;
+            color: #3c4f3a;
+            margin-bottom: 28px;
+            max-width: 90%;
+        }
+
+        .hero-stats {
+            display: flex;
+            gap: 28px;
+            margin-top: 20px;
+        }
+
+        .stat span {
+            font-weight: 800;
+            font-size: 1.6rem;
+            color: #9b6a3c;
+        }
+
+        .btn {
+            display: inline-block;
+            background: #2c5f2d;
+            color: white;
+            padding: 14px 32px;
+            border-radius: 40px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.25s ease;
+            border: none;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .btn-outline {
+            background: transparent;
+            border: 2px solid #2c5f2d;
+            color: #2c5f2d;
+        }
+
+        .btn-outline:hover {
+            background: #2c5f2d;
+            color: white;
+        }
+
+        .btn:hover {
+            background: #1e4620;
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+
+        .hero-image {
+            flex: 0.8;
+            background: #dfe9da;
+            border-radius: 48px;
+            padding: 20px;
+            text-align: center;
+        }
+
+        .hero-image i {
+            font-size: 9rem;
+            color: #2c5f2d;
+        }
+
+        .section-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            margin: 60px 0 20px;
+            color: #1f3b2c;
+            text-align: center;
+        }
+
+        .section-sub {
+            text-align: center;
+            color: #5b6e5c;
+            margin-bottom: 48px;
+            font-size: 1.1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 32px;
+            margin-bottom: 60px;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 32px;
+            box-shadow: 0 15px 30px rgba(0,0,0,0.05);
+            padding: 28px 24px;
+            transition: 0.2s;
+            border: 1px solid #ece4d7;
+        }
+
+        .product-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 25px 40px rgba(0,0,0,0.08);
+        }
+
+        .badge-free {
+            background: #e2f0e2;
+            color: #1f6e2f;
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 12px;
+            border-radius: 50px;
+            display: inline-block;
+            margin-bottom: 16px;
+        }
+
+        .badge-premium {
+            background: #f9e0c2;
+            color: #b4621a;
+        }
+
+        .product-icon {
+            font-size: 2.5rem;
+            color: #9b6a3c;
+            margin-bottom: 16px;
+        }
+
+        .product-card h3 {
+            font-size: 1.6rem;
+            margin-bottom: 12px;
+        }
+
+        .product-card p {
+            color: #4a5b48;
+            margin-bottom: 20px;
+        }
+
+        .price {
+            font-weight: 800;
+            font-size: 1.3rem;
+            margin: 15px 0;
+            color: #1e4620;
+        }
+
+        .card-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 16px;
+        }
+
+        .btn-small {
+            padding: 8px 20px;
+            font-size: 0.85rem;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            max-width: 500px;
+            width: 90%;
+            border-radius: 32px;
+            padding: 40px 32px;
+            position: relative;
+            text-align: center;
+            animation: modalFadeIn 0.3s ease;
+        }
+
+        @keyframes modalFadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .close-modal {
+            position: absolute;
+            top: 20px;
+            right: 24px;
+            font-size: 1.8rem;
+            cursor: pointer;
+            color: #999;
+            transition: 0.2s;
+        }
+
+        .close-modal:hover {
+            color: #333;
+        }
+
+        .modal-content i.fa-crown {
+            font-size: 3rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .modal-content h3 {
+            font-size: 1.8rem;
+            margin-bottom: 8px;
+            color: #1f3b2c;
+        }
+
+        .modal-content p {
+            color: #666;
+            margin-bottom: 24px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #2d3e2b;
+        }
+
+        .form-group input {
+            width: 100%;
+            padding: 14px 16px;
+            border-radius: 12px;
+            border: 2px solid #e0e0e0;
+            font-size: 1rem;
+            transition: 0.2s;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .form-group input:focus {
+            outline: none;
+            border-color: #2c5f2d;
+        }
+
+        .form-group input::placeholder {
+            color: #bbb;
+        }
+
+        .modal-content button {
+            width: 100%;
+            margin-top: 10px;
+            background: #2c5f2d;
+            color: white;
+            padding: 14px;
+            font-size: 1rem;
+            font-weight: 600;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            transition: 0.2s;
+        }
+
+        .modal-content button:hover {
+            background: #1e4620;
+            transform: translateY(-2px);
+        }
+
+        .toast {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: #1f3b2c;
+            color: white;
+            padding: 14px 28px;
+            border-radius: 60px;
+            font-weight: 500;
+            z-index: 1100;
+            display: none;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            animation: slideIn 0.3s ease;
+        }
+
+        @keyframes slideIn {
+            from {
+                transform: translateX(100%);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .about-section {
+            background: #f4f8f0;
+            border-radius: 48px;
+            padding: 48px 40px;
+            margin: 60px 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .about-text {
+            flex: 2;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 16px;
+        }
+
+        .signature {
+            font-family: 'Inter', cursive;
+            font-weight: 600;
+            margin-top: 20px;
+            font-style: italic;
+            color: #9b6a3c;
+        }
+
+        footer {
+            background: #1e2a1c;
+            color: #cfdfcd;
+            padding: 48px 0 24px;
+            margin-top: 60px;
+            border-radius: 48px 48px 0 0;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 30px;
+        }
+
+        .footer-col p i {
+            margin-right: 10px;
+        }
+
+        .copyright {
+            text-align: center;
+            margin-top: 40px;
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 800px) {
+            .hero-content h2 {
+                font-size: 2.2rem;
+            }
+            .navbar {
+                flex-direction: column;
+                text-align: center;
+            }
+            .container {
+                padding: 0 20px;
+            }
+            .about-section {
+                padding: 32px 24px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="navbar">
+        <div class="logo">
+            <h1>Henry Vertez</h1>
+            <p>Terapeuta Social · Comportamento Humano · Escritor</p>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#produtos">E-books</a></li>
+            <li><a href="#sobre">Sobre</a></li>
+            <li><a href="#gratuitos">Grátis</a></li>
+            <li><a href="#premium">Premium</a></li>
+        </ul>
+    </div>
+
+    <div class="hero">
+        <div class="hero-content">
+            <div class="hero-badge"><i class="fas fa-brain"></i> Mente & Conexão</div>
+            <h2>Desvende a ciência do comportamento humano</h2>
+            <p>Ebooks, guias e cursos exclusivos para transformar sua forma de se relacionar, liderar e viver com propósito.</p>
+            <div class="hero-stats">
+                <div class="stat"><span>+10k</span><br>leitores</div>
+                <div class="stat"><span>6</span><br>obras publicadas</div>
+                <div class="stat"><span>100%</span><br>gratuito + premium</div>
+            </div>
+            <div style="margin-top: 24px;">
+                <a href="#gratuitos" class="btn">📖 Baixar ebooks grátis</a>
+                <a href="#premium" class="btn btn-outline" style="margin-left: 16px;">🔓 Conteúdo exclusivo</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <i class="fas fa-user-md"></i>
+            <i class="fas fa-pen-fancy" style="font-size: 4rem; margin-left: 10px;"></i>
+            <p style="margin-top: 12px; font-weight: 500;">Henry Vertez</p>
+        </div>
+    </div>
+
+    <div id="produtos">
+        <h2 class="section-title">📚 Biblioteca de Conhecimento</h2>
+        <div class="section-sub">Baixe gratuitamente ou inscreva-se para acessar o conteúdo premium transformador</div>
+    </div>
+
+    <div id="gratuitos"></div>
+    <div class="products-grid" id="free-products-container"></div>
+
+    <div id="premium"></div>
+    <div class="products-grid" id="premium-products-container"></div>
+</div>
+
+<div class="container">
+    <div id="sobre" class="about-section">
+        <div class="about-text">
+            <h3>Henry Vertez · Especialista em Comportamento Humano</h3>
+            <p>Com mais de 12 anos de experiência como terapeuta social e escritor, Henry Vertez ajuda indivíduos e organizações a compreenderem os padrões que governam as relações humanas. Autor best-seller e palestrante, seus métodos combinam neurociência, psicologia social e desenvolvimento humano prático.</p>
+            <p><i class="fas fa-quote-left"></i> "A transformação começa quando entendemos que comportamento é linguagem."</p>
+            <div class="signature">— Henry Vertez</div>
+        </div>
+        <div style="flex:1; text-align: center;">
+            <i class="fas fa-book-open" style="font-size: 5rem; color: #9b6a3c;"></i>
+            <p style="margin-top: 15px;"><strong>+20 infoprodutos</strong><br>entre gratuitos e premium</p>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="container">
+        <div class="footer-content">
+            <div class="footer-col">
+                <h3>Henry Vertez</h3>
+                <p><i class="fas fa-envelope"></i> contato@henryvertez.com</p>
+                <p><i class="fab fa-instagram"></i> @henry.vertez.oficial</p>
+            </div>
+            <div class="footer-col">
+                <p><i class="fas fa-file-alt"></i> Termos de uso</p>
+                <p><i class="fas fa-lock"></i> Privacidade</p>
+            </div>
+            <div class="footer-col">
+                <p>Inscreva-se para novidades:</p>
+                <div style="display: flex; gap: 8px; margin-top: 8px;">
+                    <input type="email" id="newsEmail" placeholder="seu melhor email" style="padding: 8px; border-radius: 40px; border: none;">
+                    <button id="newsBtn" class="btn-small" style="background:#9b6a3c;">OK</button>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">© 2025 Henry Vertez - Transformando vidas através do comportamento humano.</div>
+    </div>
+</footer>
+
+<div id="premiumModal" class="modal">
+    <div class="modal-content">
+        <span class="close-modal">&times;</span>
+        <i class="fas fa-crown"></i>
+        <h3>Acesso ao Conteúdo Premium</h3>
+        <p>Preencha seus dados e receba acesso imediato aos ebooks e materiais exclusivos de Henry Vertez.</p>
+        
+        <div class="form-group">
+            <label><i class="fas fa-user"></i> Nome completo *</label>
+            <input type="text" id="modalName" placeholder="Ex: Ana Carolina Silva" autocomplete="name">
+        </div>
+        
+        <div class="form-group">
+            <label><i class="fas fa-envelope"></i> E-mail *</label>
+            <input type="email" id="modalEmail" placeholder="seuemail@exemplo.com" autocomplete="email">
+        </div>
+        
+        <div class="form-group">
+            <label><i class="fab fa-whatsapp"></i> WhatsApp (com DDD) *</label>
+            <input type="tel" id="modalWhatsapp" placeholder="845998597" autocomplete="tel">
+            <small style="color: #888; font-size: 0.7rem;">Moçambique: 9 dígitos (ex: 845998597)</small>
+        </div>
+        
+        <button id="confirmPremiumBtn"><i class="fas fa-check-circle"></i> Inscrever e Acessar Agora</button>
+        <p style="font-size: 0.7rem; margin-top: 16px; color: #888;">Ao inscrever-se, você concorda em receber conteúdos exclusivos. Seus dados estão seguros.</p>
+    </div>
+</div>
+
+<div id="toastMsg" class="toast">✔ Sucesso! O download começará em breve.</div>
+
+<script>
+    // ✅ CONFIGURAÇÃO CORRETA - Moçambique
+    const ADMIN_EMAIL = "modebravlabs@gmail.com";
+    const ADMIN_PHONE = "258845998597";  // Código 258 + 845998597
+    
+    // ✅ Número formatado corretamente para WhatsApp (sem +, apenas números)
+    const ADMIN_PHONE_INTERNATIONAL = "258845998597";
+
+    // Catálogo de produtos
+    const products = [
+        { id: 1, title: "A Arte da Escuta Ativa", desc: "Guia prático para melhorar relacionamentos e comunicação.", type: "free", fileUrl: "#", icon: "fas fa-head-side-medical", badge: "GRÁTIS" },
+        { id: 2, title: "Mapa da Mente Social", desc: "Compreenda os gatilhos comportamentais no dia a dia.", type: "free", fileUrl: "#", icon: "fas fa-draw-polygon", badge: "GRÁTIS" },
+        { id: 3, title: "Ansiedade em Tempos Modernos", desc: "Estratégias práticas baseadas em terapia cognitiva.", type: "free", fileUrl: "#", icon: "fas fa-heartbeat", badge: "GRÁTIS" },
+        { id: 4, title: "O Código do Comportamento", desc: "Curso completo + ebook sobre padrões relacionais profundos.", type: "premium", icon: "fas fa-lock", badge: "PREMIUM", requiresSignup: true },
+        { id: 5, title: "Kit Terapeuta Social", desc: "10 workshops + guias para profissionais da saúde.", type: "premium", icon: "fas fa-chalkboard-user", badge: "PREMIUM", requiresSignup: true },
+        { id: 6, title: "Masterclass: Inteligência Emocional Avançada", desc: "Vídeos e material exclusivo com Henry Vertez.", type: "premium", icon: "fas fa-crown", badge: "PREMIUM", requiresSignup: true }
+    ];
+
+    function renderProducts() {
+        const freeContainer = document.getElementById("free-products-container");
+        const premiumContainer = document.getElementById("premium-products-container");
+        
+        if (!freeContainer || !premiumContainer) return;
+        
+        const freeProducts = products.filter(p => p.type === "free");
+        const premiumProducts = products.filter(p => p.type === "premium");
+        
+        freeContainer.innerHTML = "";
+        premiumContainer.innerHTML = "";
+        
+        freeProducts.forEach(prod => {
+            const card = createProductCard(prod);
+            freeContainer.appendChild(card);
+        });
+        
+        premiumProducts.forEach(prod => {
+            const card = createProductCard(prod);
+            premiumContainer.appendChild(card);
+        });
+    }
+    
+    function createProductCard(prod) {
+        const div = document.createElement("div");
+        div.className = "product-card";
+        const badgeClass = prod.type === "free" ? "badge-free" : "badge-premium";
+        const badgeText = prod.badge;
+        const priceHtml = prod.type === "free" ? '<div class="price">💰 Gratuito</div>' : '<div class="price">✨ Acesso Exclusivo</div>';
+        
+        div.innerHTML = `
+            <div class="${badgeClass}">${badgeText}</div>
+            <div class="product-icon"><i class="${prod.icon}"></i></div>
+            <h3>${prod.title}</h3>
+            <p>${prod.desc}</p>
+            ${priceHtml}
+            <div class="card-footer">
+                <button class="btn-small download-btn" data-id="${prod.id}" data-type="${prod.type}">
+                    ${prod.type === "free" ? '📥 Baixar agora' : '🔓 Acessar (inscrever-se)'}
+                </button>
+            </div>
+        `;
+        return div;
+    }
+    
+    // ✅ FUNÇÃO CORRIGIDA - Envia notificações sem bloquear
+    function sendAdminNotifications(userName, userEmail, userWhatsapp, productTitle) {
+        // Mensagem formatada
+        const message = `🔔 NOVA INSCRIÇÃO PREMIUM - Henry Vertez\n\n` +
+            `👤 Nome: ${userName}\n` +
+            `📧 E-mail: ${userEmail}\n` +
+            `📱 WhatsApp: ${userWhatsapp}\n` +
+            `📚 Produto: ${productTitle}\n` +
+            `🕒 Data: ${new Date().toLocaleString('pt-BR')}`;
+        
+        // Links corretos
+        const whatsappLink = `https://wa.me/${+258845998597}?text=${encodeURIComponent(message)}`;
+        const emailLink = `mailto:${modebravlabs}?subject=${encodeURIComponent('🔔 Nova inscrição Premium - Henry Vertez')}&body=${encodeURIComponent(message)}`;
+        
+        // Abrir WhatsApp (nova aba)
+        setTimeout(() => {
+            window.open(whatsappLink, '_blank');
+        }, 200);
+        
+        // Abrir Email (nova aba)
+        setTimeout(() => {
+            window.open(emailLink, '_blank');
+        }, 500);
+        
+        // Email para o usuário
+        const userMessage = `Olá ${userName},\n\n` +
+            `Seu acesso ao conteúdo premium "${productTitle}" foi liberado com sucesso!\n\n` +
+            `Link para download: [Clique aqui para acessar o material exclusivo]\n\n` +
+            `Atenciosamente,\nHenry Vertez`;
+        
+        const userEmailLink = `mailto:${userEmail}?subject=${encodeURIComponent('✅ Acesso Liberado - Henry Vertez')}&body=${encodeURIComponent(userMessage)}`;
+        
+        setTimeout(() => {
+            window.open(userEmailLink, '_blank');
+        }, 800);
+        
+        console.log("✅ Notificações enviadas:");
+        console.log("WhatsApp:", whatsappLink);
+        console.log("Email Admin:", emailLink);
+    }
+    
+    function showToast(msg, isError = false) {
+        const toast = document.getElementById("toastMsg");
+        toast.textContent = msg;
+        toast.style.backgroundColor = isError ? "#c0392b" : "#1f3b2c";
+        toast.style.display = "block";
+        setTimeout(() => {
+            toast.style.display = "none";
+            toast.style.backgroundColor = "#1f3b2c";
+        }, 4000);
+    }
+    
+    let pendingPremiumProduct = null;
+    
+    function handleProductClick(productId, productType) {
+        const product = products.find(p => p.id == productId);
+        if (!product) return;
+        
+        if (productType === "free") {
+            showToast(`📘 Download iniciado: "${product.title}"`);
+            const link = document.createElement('a');
+            link.href = "#";
+            link.download = `${product.title}.pdf`;
+            link.click();
+        } 
+        else if (productType === "premium") {
+            pendingPremiumProduct = product;
+            const modal = document.getElementById("premiumModal");
+            modal.style.display = "flex";
+        }
+    }
+    
+    document.addEventListener("click", (e) => {
+        const btn = e.target.closest(".download-btn");
+        if (btn) {
+            const id = btn.getAttribute("data-id");
+            const type = btn.getAttribute("data-type");
+            if (id && type) handleProductClick(parseInt(id), type);
+        }
+    });
+    
+    const modal = document.getElementById("premiumModal");
+    const closeModalBtn = document.querySelector(".close-modal");
+    
+    function closeModalFunc() {
+        if (modal) modal.style.display = "none";
+        pendingPremiumProduct = null;
+        document.getElementById("modalName").value = "";
+        document.getElementById("modalEmail").value = "";
+        document.getElementById("modalWhatsapp").value = "";
+    }
+    
+    if (closeModalBtn) closeModalBtn.addEventListener("click", closeModalFunc);
+    window.addEventListener("click", (e) => {
+        if (e.target === modal) closeModalFunc();
+    });
+    
+    function validateWhatsapp(whatsapp) {
+        const cleaned = whatsapp.replace(/\D/g, '');
+        return cleaned.length === 9 || cleaned.length === 12;
+    }
+    
+    const confirmBtn = document.getElementById("confirmPremiumBtn");
+    if (confirmBtn) {
+        confirmBtn.addEventListener("click", () => {
+            const name = document.getElementById("modalName").value.trim();
+            const email = document.getElementById("modalEmail").value.trim();
+            const whatsapp = document.getElementById("modalWhatsapp").value.trim();
+            
+            if (!name) {
+                alert("Por favor, preencha o seu nome completo.");
+                return;
+            }
+            if (!email || !email.includes("@") || !email.includes(".")) {
+                alert("Por favor, preencha um e-mail válido.");
+                return;
+            }
+            if (!whatsapp) {
+                alert("Por favor, preencha o número de WhatsApp.");
+                return;
+            }
+            
+            if (!validateWhatsapp(whatsapp)) {
+                alert("Número de WhatsApp inválido. Use 9 dígitos (ex: 845998597)");
+                return;
+            }
+            
+            const formattedWhatsapp = whatsapp.replace(/\D/g, '');
+            
+            if (pendingPremiumProduct) {
+                sendAdminNotifications(name, email, formattedWhatsapp, pendingPremiumProduct.title);
+                showToast(`✅ Inscrição confirmada, ${name}! WhatsApp e email serão abertos.`);
+                closeModalFunc();
+            } else {
+                showToast("Erro: Nenhum produto selecionado.", true);
+            }
+        });
+    }
+    
+    const newsBtn = document.getElementById("newsBtn");
+    const newsEmail = document.getElementById("newsEmail");
+    if (newsBtn) {
+        newsBtn.addEventListener("click", () => {
+            const email = newsEmail.value.trim();
+            if (email && email.includes("@")) {
+                showToast("📧 Obrigado! Você receberá novidades no e-mail.");
+                console.log(`Novo lead newsletter: ${email}`);
+                newsEmail.value = "";
+            } else {
+                alert("Insira um e-mail válido.");
+            }
+        });
+    }
+    
+    document.querySelectorAll('.nav-links a, .hero-content a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+            const targetId = this.getAttribute('href');
+            if (targetId && targetId !== "#" && targetId.startsWith("#")) {
+                e.preventDefault();
+                const element = document.querySelector(targetId);
+                if (element) {
+                    element.scrollIntoView({ behavior: "smooth", block: "start" });
+                } else if (targetId === "#gratuitos") {
+                    document.getElementById("free-products-container")?.scrollIntoView({ behavior: "smooth" });
+                } else if (targetId === "#premium") {
+                    document.getElementById("premium-products-container")?.scrollIntoView({ behavior: "smooth" });
+                }
+            }
+        });
+    });
+    
+    renderProducts();
+</script>
+</body>
+</html>
