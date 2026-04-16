@@ -1,0 +1,1686 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Henry Vertez — Terapeuta Social & Escritor</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --gold: #C8A96E;
+    --gold-light: #E8D5A3;
+    --gold-dark: #8B6914;
+    --deep: #0A0A0F;
+    --dark: #111118;
+    --card: #16161F;
+    --border: rgba(200,169,110,0.18);
+    --text: #E8E4DC;
+    --muted: #8A8680;
+    --white: #F5F2EC;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--deep);
+    color: var(--text);
+    font-family: 'Outfit', sans-serif;
+    font-weight: 300;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  /* ─── NOISE OVERLAY ─── */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.6;
+  }
+
+  /* ─── SCROLLBAR ─── */
+  ::-webkit-scrollbar { width: 4px; }
+  ::-webkit-scrollbar-track { background: var(--deep); }
+  ::-webkit-scrollbar-thumb { background: var(--gold-dark); border-radius: 2px; }
+
+  /* ─── NAV ─── */
+  nav {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    z-index: 100;
+    padding: 24px 60px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: linear-gradient(to bottom, rgba(10,10,15,0.95), transparent);
+    backdrop-filter: blur(12px);
+    transition: all 0.3s ease;
+  }
+
+  .nav-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.12em;
+    color: var(--gold);
+    text-transform: uppercase;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+  }
+
+  .nav-links a {
+    color: var(--muted);
+    text-decoration: none;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color 0.3s;
+  }
+
+  .nav-links a:hover { color: var(--gold); }
+
+  .nav-cta {
+    padding: 10px 28px;
+    border: 1px solid var(--gold);
+    color: var(--gold);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .nav-cta:hover {
+    background: var(--gold);
+    color: var(--deep);
+  }
+
+  /* ─── HERO ─── */
+  .hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 120px 60px 80px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-bg {
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse 60% 70% at 70% 50%, rgba(200,169,110,0.07) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 20% 80%, rgba(139,105,20,0.05) 0%, transparent 50%);
+  }
+
+  .hero-lines {
+    position: absolute;
+    top: 0; right: 0;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    opacity: 0.06;
+  }
+
+  .hero-lines svg { width: 100%; height: 100%; }
+
+  .hero-content { position: relative; z-index: 2; }
+
+  .hero-eyebrow {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+    animation: fadeUp 1s ease both;
+  }
+
+  .eyebrow-line {
+    width: 48px;
+    height: 1px;
+    background: var(--gold);
+  }
+
+  .eyebrow-text {
+    font-size: 11px;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(54px, 6vw, 88px);
+    font-weight: 300;
+    line-height: 1.05;
+    margin-bottom: 28px;
+    animation: fadeUp 1s 0.15s ease both;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold);
+  }
+
+  .hero-subtitle {
+    font-size: 16px;
+    line-height: 1.75;
+    color: var(--muted);
+    max-width: 460px;
+    margin-bottom: 52px;
+    animation: fadeUp 1s 0.3s ease both;
+    font-weight: 300;
+  }
+
+  .hero-actions {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+    animation: fadeUp 1s 0.45s ease both;
+  }
+
+  .btn-primary {
+    padding: 16px 44px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--deep);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.15);
+    transform: translateX(-100%);
+    transition: transform 0.4s ease;
+  }
+
+  .btn-primary:hover::after { transform: translateX(0); }
+
+  .btn-ghost {
+    padding: 16px 44px;
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .btn-ghost:hover {
+    border-color: var(--gold);
+    color: var(--gold);
+  }
+
+  .hero-visual {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    animation: fadeIn 1.2s 0.3s ease both;
+  }
+
+  .author-frame {
+    position: relative;
+    width: 380px;
+    height: 480px;
+  }
+
+  .author-frame-border {
+    position: absolute;
+    inset: 0;
+    border: 1px solid var(--border);
+    transform: rotate(3deg);
+  }
+
+  .author-frame-inner {
+    position: absolute;
+    inset: 12px;
+    background: linear-gradient(160deg, var(--card) 0%, #0d0d14 100%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    overflow: hidden;
+  }
+
+  .author-frame-inner::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .author-avatar {
+    width: 140px;
+    height: 140px;
+    border-radius: 50%;
+    border: 2px solid var(--gold);
+    background: linear-gradient(135deg, #1a1a2e, #16213e);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 56px;
+    font-weight: 300;
+    color: var(--gold);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .author-avatar::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 30% 30%, rgba(200,169,110,0.15), transparent 60%);
+  }
+
+  .author-name-card {
+    text-align: center;
+  }
+
+  .author-name-card h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 8px;
+  }
+
+  .author-roles {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .role-tag {
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.8;
+  }
+
+  .author-stats {
+    display: flex;
+    gap: 32px;
+    padding: 20px 32px;
+    border-top: 1px solid var(--border);
+    width: 100%;
+    justify-content: center;
+  }
+
+  .stat { text-align: center; }
+
+  .stat-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 28px;
+    font-weight: 300;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-top: 2px;
+  }
+
+  /* ─── DIVIDER ─── */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* ─── SECTION BASE ─── */
+  section {
+    padding: 100px 60px;
+    position: relative;
+  }
+
+  .section-header {
+    text-align: center;
+    margin-bottom: 72px;
+  }
+
+  .section-label {
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 56px);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--white);
+  }
+
+  .section-title em { font-style: italic; color: var(--gold); }
+
+  .section-desc {
+    font-size: 15px;
+    color: var(--muted);
+    max-width: 520px;
+    margin: 20px auto 0;
+    line-height: 1.8;
+  }
+
+  /* ─── ABOUT ─── */
+  .about {
+    background: var(--dark);
+  }
+
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 80px;
+    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .about-content h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 3.5vw, 52px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 28px;
+    color: var(--white);
+  }
+
+  .about-content h2 em { font-style: italic; color: var(--gold); }
+
+  .about-content p {
+    font-size: 15px;
+    line-height: 1.9;
+    color: var(--muted);
+    margin-bottom: 20px;
+  }
+
+  .about-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 36px;
+  }
+
+  .tag {
+    padding: 8px 20px;
+    border: 1px solid var(--border);
+    font-size: 11px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-weight: 400;
+  }
+
+  .about-quote {
+    position: relative;
+    padding: 48px 44px;
+    background: var(--card);
+    border-left: 2px solid var(--gold);
+  }
+
+  .about-quote::before {
+    content: '"';
+    position: absolute;
+    top: -20px;
+    left: 36px;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 120px;
+    color: var(--gold);
+    opacity: 0.15;
+    line-height: 1;
+  }
+
+  .about-quote blockquote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 26px;
+    font-style: italic;
+    font-weight: 300;
+    line-height: 1.6;
+    color: var(--white);
+    margin-bottom: 24px;
+  }
+
+  .about-quote cite {
+    font-size: 12px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+  }
+
+  /* ─── FREE EBOOKS ─── */
+  .free-books { background: var(--deep); }
+
+  .books-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .book-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    padding: 40px 32px;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.4s ease;
+    cursor: pointer;
+  }
+
+  .book-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold), var(--gold-dark));
+    transform: scaleX(0);
+    transition: transform 0.4s ease;
+  }
+
+  .book-card:hover { transform: translateY(-6px); border-color: rgba(200,169,110,0.35); }
+  .book-card:hover::before { transform: scaleX(1); }
+
+  .book-cover {
+    width: 100%;
+    height: 180px;
+    background: linear-gradient(135deg, #1a1424 0%, #0e1520 100%);
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 28px;
+    position: relative;
+    overflow: hidden;
+    font-size: 48px;
+  }
+
+  .book-cover::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(200,169,110,0.08), transparent 60%);
+  }
+
+  .book-badge {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: linear-gradient(135deg, #2d5a1a, #1a3a10);
+    color: #7ED858;
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    padding: 5px 12px;
+    font-weight: 500;
+  }
+
+  .book-category {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .book-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .book-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 28px;
+  }
+
+  .book-download {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    font-weight: 400;
+    transition: gap 0.3s;
+  }
+
+  .book-download:hover { gap: 16px; }
+
+  .book-download-arrow {
+    width: 28px;
+    height: 1px;
+    background: var(--gold);
+    position: relative;
+    transition: width 0.3s;
+  }
+
+  .book-download-arrow::after {
+    content: '›';
+    position: absolute;
+    right: -6px;
+    top: -9px;
+    font-size: 16px;
+  }
+
+  .book-download:hover .book-download-arrow { width: 40px; }
+
+  /* ─── PREMIUM SECTION ─── */
+  .premium {
+    background: linear-gradient(160deg, #0c0c14 0%, #0a0810 100%);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .premium::before {
+    content: '';
+    position: absolute;
+    top: -200px; left: -200px;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(200,169,110,0.06) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .premium::after {
+    content: '';
+    position: absolute;
+    bottom: -200px; right: -100px;
+    width: 500px; height: 500px;
+    background: radial-gradient(circle, rgba(139,105,20,0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .premium-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto 80px;
+    position: relative;
+    z-index: 2;
+  }
+
+  .premium-card {
+    background: linear-gradient(160deg, rgba(22,22,31,0.95) 0%, rgba(14,14,20,0.95) 100%);
+    border: 1px solid var(--border);
+    padding: 0;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.5s ease;
+  }
+
+  .premium-card.featured {
+    border-color: rgba(200,169,110,0.5);
+    transform: scale(1.03);
+  }
+
+  .premium-card.featured::before {
+    content: 'Mais Popular';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    background: linear-gradient(90deg, var(--gold-dark), var(--gold));
+    color: var(--deep);
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    text-align: center;
+    padding: 8px;
+    font-weight: 600;
+    z-index: 5;
+  }
+
+  .premium-card:hover {
+    border-color: rgba(200,169,110,0.4);
+    box-shadow: 0 24px 60px rgba(0,0,0,0.5), 0 0 0 1px rgba(200,169,110,0.1);
+    transform: translateY(-8px);
+  }
+
+  .premium-card.featured:hover { transform: scale(1.03) translateY(-8px); }
+
+  .pcard-cover {
+    height: 200px;
+    background: linear-gradient(135deg, #13101e 0%, #0a0e18 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    font-size: 52px;
+  }
+
+  .pcard-cover::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(200,169,110,0.1), transparent 50%, rgba(139,105,20,0.05));
+  }
+
+  .pcard-lock {
+    position: absolute;
+    bottom: 16px; right: 16px;
+    width: 36px; height: 36px;
+    background: rgba(200,169,110,0.15);
+    border: 1px solid rgba(200,169,110,0.3);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px;
+  }
+
+  .pcard-body {
+    padding: 32px 28px;
+  }
+
+  .pcard-category {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 10px;
+  }
+
+  .pcard-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 22px;
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 12px;
+    line-height: 1.3;
+  }
+
+  .pcard-desc {
+    font-size: 13px;
+    line-height: 1.7;
+    color: var(--muted);
+    margin-bottom: 24px;
+  }
+
+  .pcard-includes {
+    list-style: none;
+    margin-bottom: 28px;
+  }
+
+  .pcard-includes li {
+    font-size: 12px;
+    color: var(--text);
+    padding: 6px 0;
+    border-bottom: 1px solid rgba(255,255,255,0.04);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .pcard-includes li::before {
+    content: '✦';
+    color: var(--gold);
+    font-size: 9px;
+    flex-shrink: 0;
+  }
+
+  .pcard-footer {
+    border-top: 1px solid var(--border);
+    padding: 24px 28px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .pcard-price {
+    font-family: 'Cormorant Garamond', serif;
+  }
+
+  .price-amount {
+    font-size: 36px;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+  }
+
+  .price-period {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    display: block;
+    margin-top: 2px;
+  }
+
+  .btn-unlock {
+    padding: 12px 28px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--deep);
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-family: 'Outfit', sans-serif;
+    text-decoration: none;
+    display: inline-block;
+  }
+
+  .btn-unlock:hover {
+    box-shadow: 0 8px 24px rgba(200,169,110,0.35);
+    transform: translateY(-1px);
+  }
+
+  /* ─── SUBSCRIPTION FORM ─── */
+  .subscription {
+    background: var(--dark);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .subscription::before {
+    content: '';
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%, -50%);
+    width: 800px; height: 400px;
+    background: radial-gradient(ellipse, rgba(200,169,110,0.05) 0%, transparent 65%);
+    pointer-events: none;
+  }
+
+  .sub-box {
+    max-width: 680px;
+    margin: 0 auto;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+  }
+
+  .sub-box h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(36px, 4vw, 52px);
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 20px;
+    color: var(--white);
+  }
+
+  .sub-box h2 em { font-style: italic; color: var(--gold); }
+
+  .sub-box p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.8;
+    margin-bottom: 48px;
+  }
+
+  .sub-form {
+    display: flex;
+    gap: 0;
+    margin-bottom: 20px;
+  }
+
+  .sub-form input {
+    flex: 1;
+    padding: 18px 24px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-right: none;
+    color: var(--text);
+    font-size: 14px;
+    font-family: 'Outfit', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .sub-form input:focus { border-color: rgba(200,169,110,0.5); }
+  .sub-form input::placeholder { color: var(--muted); }
+
+  .sub-form button {
+    padding: 18px 44px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--deep);
+    border: none;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+  }
+
+  .sub-form button:hover {
+    box-shadow: 0 8px 30px rgba(200,169,110,0.3);
+  }
+
+  .sub-note {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  .sub-benefits {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-top: 48px;
+    flex-wrap: wrap;
+  }
+
+  .sub-benefit {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+
+  .sub-benefit-icon {
+    width: 32px;
+    height: 32px;
+    border: 1px solid var(--border);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold);
+    font-size: 14px;
+    flex-shrink: 0;
+  }
+
+  /* ─── TESTIMONIALS ─── */
+  .testimonials { background: var(--deep); }
+
+  .testi-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+    max-width: 1100px;
+    margin: 0 auto;
+  }
+
+  .testi-card {
+    padding: 40px 32px;
+    background: var(--card);
+    border: 1px solid var(--border);
+    position: relative;
+    transition: all 0.3s;
+  }
+
+  .testi-card:hover { border-color: rgba(200,169,110,0.3); }
+
+  .testi-stars {
+    display: flex; gap: 4px;
+    margin-bottom: 20px;
+    color: var(--gold);
+    font-size: 14px;
+  }
+
+  .testi-text {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    font-style: italic;
+    font-weight: 300;
+    color: var(--text);
+    line-height: 1.7;
+    margin-bottom: 28px;
+  }
+
+  .testi-author {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .testi-avatar {
+    width: 42px; height: 42px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--card), var(--deep));
+    border: 1px solid var(--border);
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 18px;
+    color: var(--gold);
+    flex-shrink: 0;
+  }
+
+  .testi-name {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--text);
+    margin-bottom: 3px;
+  }
+
+  .testi-role {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── FOOTER ─── */
+  footer {
+    background: var(--deep);
+    border-top: 1px solid var(--border);
+    padding: 60px;
+  }
+
+  .footer-inner {
+    max-width: 1100px;
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: gap;
+    gap: 32px;
+  }
+
+  .footer-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 24px;
+    font-weight: 400;
+    color: var(--gold);
+    letter-spacing: 0.1em;
+  }
+
+  .footer-tagline {
+    font-size: 12px;
+    color: var(--muted);
+    letter-spacing: 0.1em;
+    margin-top: 4px;
+  }
+
+  .footer-links {
+    display: flex;
+    gap: 32px;
+    list-style: none;
+  }
+
+  .footer-links a {
+    font-size: 12px;
+    color: var(--muted);
+    text-decoration: none;
+    letter-spacing: 0.08em;
+    transition: color 0.3s;
+  }
+
+  .footer-links a:hover { color: var(--gold); }
+
+  .footer-copy {
+    font-size: 11px;
+    color: var(--muted);
+    letter-spacing: 0.08em;
+    opacity: 0.6;
+  }
+
+  /* ─── MODAL ─── */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(5,5,8,0.92);
+    z-index: 1000;
+    align-items: center;
+    justify-content: center;
+    padding: 24px;
+    backdrop-filter: blur(8px);
+  }
+
+  .modal-overlay.active { display: flex; }
+
+  .modal {
+    background: var(--card);
+    border: 1px solid rgba(200,169,110,0.3);
+    padding: 56px 52px;
+    max-width: 480px;
+    width: 100%;
+    position: relative;
+    animation: modalIn 0.35s ease;
+  }
+
+  @keyframes modalIn {
+    from { opacity: 0; transform: scale(0.96) translateY(16px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+  }
+
+  .modal::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 40px; right: 40px;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+
+  .modal-close {
+    position: absolute;
+    top: 20px; right: 24px;
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 22px;
+    cursor: pointer;
+    transition: color 0.3s;
+    line-height: 1;
+    font-family: 'Outfit', sans-serif;
+  }
+
+  .modal-close:hover { color: var(--gold); }
+
+  .modal-icon {
+    font-size: 40px;
+    margin-bottom: 20px;
+    display: block;
+  }
+
+  .modal h3 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 300;
+    color: var(--white);
+    margin-bottom: 8px;
+    line-height: 1.2;
+  }
+
+  .modal-subtitle {
+    font-size: 13px;
+    color: var(--muted);
+    margin-bottom: 36px;
+    line-height: 1.7;
+  }
+
+  .modal-form { display: flex; flex-direction: column; gap: 14px; }
+
+  .modal-form input {
+    padding: 15px 18px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    color: var(--text);
+    font-size: 14px;
+    font-family: 'Outfit', sans-serif;
+    outline: none;
+    transition: border-color 0.3s;
+  }
+
+  .modal-form input:focus { border-color: rgba(200,169,110,0.5); }
+  .modal-form input::placeholder { color: var(--muted); }
+
+  .modal-form button {
+    padding: 16px;
+    background: linear-gradient(135deg, var(--gold), var(--gold-dark));
+    color: var(--deep);
+    border: none;
+    font-size: 12px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 600;
+    font-family: 'Outfit', sans-serif;
+    margin-top: 8px;
+    transition: all 0.3s;
+  }
+
+  .modal-form button:hover {
+    box-shadow: 0 8px 28px rgba(200,169,110,0.35);
+  }
+
+  .modal-secure {
+    font-size: 11px;
+    color: var(--muted);
+    text-align: center;
+    margin-top: 12px;
+    letter-spacing: 0.05em;
+  }
+
+  /* ─── ANIMATIONS ─── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(28px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─── NOTIFICATION ─── */
+  .toast {
+    position: fixed;
+    bottom: 32px; right: 32px;
+    background: var(--card);
+    border: 1px solid rgba(200,169,110,0.4);
+    border-left: 3px solid var(--gold);
+    padding: 18px 24px;
+    z-index: 10000;
+    transform: translateX(200%);
+    transition: transform 0.4s ease;
+    max-width: 320px;
+  }
+
+  .toast.show { transform: translateX(0); }
+  .toast-title { font-size: 13px; font-weight: 500; color: var(--white); margin-bottom: 4px; }
+  .toast-msg { font-size: 12px; color: var(--muted); line-height: 1.5; }
+
+  /* ─── RESPONSIVE ─── */
+  @media (max-width: 900px) {
+    nav { padding: 20px 28px; }
+    .nav-links { display: none; }
+    .hero { grid-template-columns: 1fr; padding: 120px 28px 60px; text-align: center; }
+    .hero-eyebrow { justify-content: center; }
+    .hero-subtitle { margin: 0 auto 40px; }
+    .hero-actions { justify-content: center; }
+    .hero-visual { display: none; }
+    section { padding: 72px 28px; }
+    .about-grid { grid-template-columns: 1fr; gap: 40px; }
+    .books-grid { grid-template-columns: 1fr; }
+    .premium-grid { grid-template-columns: 1fr; }
+    .premium-card.featured { transform: none; }
+    .premium-card.featured:hover { transform: translateY(-8px); }
+    .testi-grid { grid-template-columns: 1fr; }
+    .sub-form { flex-direction: column; }
+    .sub-form input { border-right: 1px solid var(--border); border-bottom: none; }
+    .footer-inner { flex-direction: column; text-align: center; }
+    .footer-links { flex-wrap: wrap; justify-content: center; }
+    .modal { padding: 40px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Henry Vertez</div>
+  <ul class="nav-links">
+    <li><a href="#sobre">Sobre</a></li>
+    <li><a href="#gratuitos">E-books Grátis</a></li>
+    <li><a href="#premium">Premium</a></li>
+    <li><a href="#depoimentos">Depoimentos</a></li>
+  </ul>
+  <a href="#inscricao" class="nav-cta">Inscrever-se</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-lines">
+    <svg viewBox="0 0 400 800" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <line x1="100" y1="0" x2="100" y2="800" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="200" y1="0" x2="200" y2="800" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="300" y1="0" x2="300" y2="800" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="0" y1="200" x2="400" y2="200" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="0" y1="400" x2="400" y2="400" stroke="#C8A96E" stroke-width="0.5"/>
+      <line x1="0" y1="600" x2="400" y2="600" stroke="#C8A96E" stroke-width="0.5"/>
+      <circle cx="100" cy="200" r="3" fill="#C8A96E"/>
+      <circle cx="300" cy="400" r="3" fill="#C8A96E"/>
+      <circle cx="200" cy="600" r="3" fill="#C8A96E"/>
+    </svg>
+  </div>
+
+  <div class="hero-content">
+    <div class="hero-eyebrow">
+      <div class="eyebrow-line"></div>
+      <span class="eyebrow-text">Saúde · Terapia Social · Literatura</span>
+    </div>
+    <h1 class="hero-title">
+      Transforme sua<br>
+      vida através do<br>
+      <em>conhecimento</em>
+    </h1>
+    <p class="hero-subtitle">
+      Obras que unem ciência, cura emocional e profundidade humana. 
+      Escritas para quem busca mais do que respostas — busca transformação real.
+    </p>
+    <div class="hero-actions">
+      <a href="#gratuitos" class="btn-primary">Explorar E-books Grátis</a>
+      <a href="#premium" class="btn-ghost">Ver Acervo Premium</a>
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="author-frame">
+      <div class="author-frame-border"></div>
+      <div class="author-frame-inner">
+        <div class="author-avatar">H</div>
+        <div class="author-name-card">
+          <h3>Henry Vertez</h3>
+          <div class="author-roles">
+            <span class="role-tag">Profissional de Saúde</span>
+            <span class="role-tag">Terapeuta Social</span>
+            <span class="role-tag">Escritor</span>
+          </div>
+        </div>
+        <div class="author-stats">
+          <div class="stat">
+            <span class="stat-num">12+</span>
+            <span class="stat-label">Obras</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">5k+</span>
+            <span class="stat-label">Leitores</span>
+          </div>
+          <div class="stat">
+            <span class="stat-num">98%</span>
+            <span class="stat-label">Satisfação</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SOBRE -->
+<section class="about" id="sobre">
+  <div class="about-grid">
+    <div class="about-content reveal">
+      <h2>Quem é<br><em>Henry Vertez</em></h2>
+      <p>
+        Profissional de saúde com anos de atuação clínica e comunitária, Henry Vertez combina o rigor científico com a sensibilidade humana que só a escuta terapêutica profunda pode proporcionar.
+      </p>
+      <p>
+        Como terapeuta social, acompanhou centenas de pessoas em processos de cura, empoderamento e ressignificação de vida. Essa experiência viva alimenta cada palavra dos seus livros — obras que não apenas informam, mas tocam e transformam.
+      </p>
+      <div class="about-tags">
+        <span class="tag">Saúde Mental</span>
+        <span class="tag">Terapia Social</span>
+        <span class="tag">Desenvolvimento Humano</span>
+        <span class="tag">Bem-Estar</span>
+        <span class="tag">Escrita Terapêutica</span>
+      </div>
+    </div>
+    <div class="about-quote reveal">
+      <blockquote>
+        Escrevo para aqueles que acreditam que o conhecimento, quando carregado de humanidade, tem o poder de mudar destinos.
+      </blockquote>
+      <cite>— Henry Vertez</cite>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- E-BOOKS GRATUITOS -->
+<section class="free-books" id="gratuitos">
+  <div class="section-header reveal">
+    <span class="section-label">Acesso Livre</span>
+    <h2 class="section-title">E-books <em>Gratuitos</em></h2>
+    <p class="section-desc">Comece sua jornada agora. Obras selecionadas para download imediato, sem cadastro.</p>
+  </div>
+
+  <div class="books-grid">
+    <div class="book-card reveal">
+      <div class="book-cover">
+        🧠
+        <div class="book-badge">Grátis</div>
+      </div>
+      <div class="book-category">Saúde Mental</div>
+      <h3 class="book-title">Mente em Equilíbrio</h3>
+      <p class="book-desc">Um guia introdutório para compreender e cuidar da sua saúde mental no dia a dia, com técnicas acessíveis e comprovadas.</p>
+      <a href="#" class="book-download" onclick="downloadFree(event,'Mente em Equilíbrio')">
+        Download gratuito
+        <span class="book-download-arrow"></span>
+      </a>
+    </div>
+
+    <div class="book-card reveal">
+      <div class="book-cover">
+        💬
+        <div class="book-badge">Grátis</div>
+      </div>
+      <div class="book-category">Relações Sociais</div>
+      <h3 class="book-title">A Arte de Se Conectar</h3>
+      <p class="book-desc">Reflexões sobre vínculos humanos, comunicação não-violenta e como cultivar relações que nutrem e fortalecem.</p>
+      <a href="#" class="book-download" onclick="downloadFree(event,'A Arte de Se Conectar')">
+        Download gratuito
+        <span class="book-download-arrow"></span>
+      </a>
+    </div>
+
+    <div class="book-card reveal">
+      <div class="book-cover">
+        🌱
+        <div class="book-badge">Grátis</div>
+      </div>
+      <div class="book-category">Autoconhecimento</div>
+      <h3 class="book-title">O Despertar Interior</h3>
+      <p class="book-desc">Primeiros passos no caminho do autoconhecimento. Um convite gentil para olhar para dentro e descobrir quem você realmente é.</p>
+      <a href="#" class="book-download" onclick="downloadFree(event,'O Despertar Interior')">
+        Download gratuito
+        <span class="book-download-arrow"></span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- PREMIUM -->
+<section class="premium" id="premium">
+  <div class="section-header reveal">
+    <span class="section-label">Acervo Exclusivo</span>
+    <h2 class="section-title">E-books <em>Premium</em></h2>
+    <p class="section-desc">Obras aprofundadas, com metodologia exclusiva e conteúdo que vai muito além do convencional. Acesso mediante inscrição e ativação.</p>
+  </div>
+
+  <div class="premium-grid">
+    <div class="premium-card reveal">
+      <div class="pcard-cover">
+        🔮
+        <div class="pcard-lock">🔒</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-category">Terapia Profunda</div>
+        <h3 class="pcard-title">Raízes da Cura</h3>
+        <p class="pcard-desc">Um mergulho nas raízes dos padrões emocionais e um roteiro completo para ressignificação terapêutica.</p>
+        <ul class="pcard-includes">
+          <li>187 páginas de conteúdo exclusivo</li>
+          <li>Exercícios práticos guiados</li>
+          <li>Mapas de jornada emocional</li>
+          <li>Acesso vitalício após compra</li>
+        </ul>
+      </div>
+      <div class="pcard-footer">
+        <div class="pcard-price">
+          <span class="price-amount">R$37</span>
+          <span class="price-period">pagamento único</span>
+        </div>
+        <button class="btn-unlock" onclick="openModal('Raízes da Cura', 'R$37')">Desbloquear</button>
+      </div>
+    </div>
+
+    <div class="premium-card featured reveal">
+      <div class="pcard-cover" style="background: linear-gradient(135deg, #1a1020 0%, #0e0a18 100%);">
+        ✨
+        <div class="pcard-lock">🔒</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-category">Obra Completa</div>
+        <h3 class="pcard-title">A Jornada do Ser</h3>
+        <p class="pcard-desc">A obra mais completa de Henry Vertez. Uma trilogia em um único volume sobre identidade, propósito e transformação humana.</p>
+        <ul class="pcard-includes">
+          <li>340 páginas — trilogia completa</li>
+          <li>Guia de práticas semanais</li>
+          <li>Glossário terapêutico</li>
+          <li>Bônus: áudios de meditação guiada</li>
+          <li>Acesso ao grupo exclusivo de leitores</li>
+        </ul>
+      </div>
+      <div class="pcard-footer">
+        <div class="pcard-price">
+          <span class="price-amount">R$97</span>
+          <span class="price-period">pagamento único</span>
+        </div>
+        <button class="btn-unlock" onclick="openModal('A Jornada do Ser', 'R$97')">Desbloquear</button>
+      </div>
+    </div>
+
+    <div class="premium-card reveal">
+      <div class="pcard-cover" style="background: linear-gradient(135deg, #0e1820 0%, #0a1018 100%);">
+        🌊
+        <div class="pcard-lock">🔒</div>
+      </div>
+      <div class="pcard-body">
+        <div class="pcard-category">Bem-Estar & Corpo</div>
+        <h3 class="pcard-title">Corpo que Fala</h3>
+        <p class="pcard-desc">A linguagem do corpo como portal de cura. Como as emoções se manifestam fisicamente e como usar isso a seu favor.</p>
+        <ul class="pcard-includes">
+          <li>214 páginas com ilustrações</li>
+          <li>Protocolos somáticos práticos</li>
+          <li>Fichas de autoavaliação</li>
+          <li>Acesso vitalício após compra</li>
+        </ul>
+      </div>
+      <div class="pcard-footer">
+        <div class="pcard-price">
+          <span class="price-amount">R$57</span>
+          <span class="price-period">pagamento único</span>
+        </div>
+        <button class="btn-unlock" onclick="openModal('Corpo que Fala', 'R$57')">Desbloquear</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- INSCRIÇÃO -->
+<section class="subscription" id="inscricao">
+  <div class="sub-box">
+    <div class="reveal">
+      <span class="section-label">Newsletter Premium</span>
+      <h2>Acesse primeiro.<br>Sempre <em>em destaque.</em></h2>
+      <p>Inscreva-se e receba novidades, lançamentos exclusivos e conteúdos terapêuticos direto no seu e-mail. Membros inscritos têm acesso prioritário e descontos especiais.</p>
+    </div>
+    <div class="sub-form reveal">
+      <input type="email" id="emailInput" placeholder="Seu melhor e-mail...">
+      <button onclick="subscribe()">Inscrever-me</button>
+    </div>
+    <p class="sub-note reveal">✦ Sem spam. Você pode cancelar a qualquer momento.</p>
+    <div class="sub-benefits reveal">
+      <div class="sub-benefit">
+        <div class="sub-benefit-icon">📚</div>
+        <span>Lançamentos antecipados</span>
+      </div>
+      <div class="sub-benefit">
+        <div class="sub-benefit-icon">💰</div>
+        <span>Descontos exclusivos</span>
+      </div>
+      <div class="sub-benefit">
+        <div class="sub-benefit-icon">🎁</div>
+        <span>Conteúdo bônus</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- DEPOIMENTOS -->
+<section class="testimonials" id="depoimentos">
+  <div class="section-header reveal">
+    <span class="section-label">Vozes Reais</span>
+    <h2 class="section-title">O que dizem os <em>leitores</em></h2>
+  </div>
+
+  <div class="testi-grid">
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Ler Henry Vertez é como ter uma conversa com alguém que realmente te vê. Cada página trouxe algo novo para a minha caminhada."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">M</div>
+        <div>
+          <div class="testi-name">Marina Costa</div>
+          <div class="testi-role">Psicóloga, São Paulo</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"A Jornada do Ser mudou minha forma de me relacionar comigo mesmo e com os outros. Uma leitura que recomendo para todos."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">R</div>
+        <div>
+          <div class="testi-name">Rafael Mendes</div>
+          <div class="testi-role">Estudante de medicina, BH</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="testi-card reveal">
+      <div class="testi-stars">★★★★★</div>
+      <p class="testi-text">"Conteúdo que vai além. Henry tem o dom de tornar profundo acessível. Baixei o e-book grátis e comprei todos os outros no mesmo dia."</p>
+      <div class="testi-author">
+        <div class="testi-avatar">A</div>
+        <div>
+          <div class="testi-name">Ana Luíza Ferreira</div>
+          <div class="testi-role">Coach, Rio de Janeiro</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-inner">
+    <div>
+      <div class="footer-logo">Henry Vertez</div>
+      <div class="footer-tagline">Saúde · Terapia Social · Literatura</div>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#sobre">Sobre</a></li>
+      <li><a href="#gratuitos">E-books Grátis</a></li>
+      <li><a href="#premium">Premium</a></li>
+      <li><a href="#inscricao">Newsletter</a></li>
+    </ul>
+    <div class="footer-copy">© 2025 Henry Vertez. Todos os direitos reservados.</div>
+  </div>
+</footer>
+
+<!-- MODAL PREMIUM -->
+<div class="modal-overlay" id="modal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">×</button>
+    <span class="modal-icon">✨</span>
+    <h3 id="modal-title">Acesso Premium</h3>
+    <p class="modal-subtitle" id="modal-subtitle">Preencha seus dados para liberar o acesso ao e-book.</p>
+    <div class="modal-form">
+      <input type="text" placeholder="Seu nome completo">
+      <input type="email" placeholder="Seu melhor e-mail">
+      <button onclick="completePurchase()">Confirmar e Pagar <span id="modal-price"></span></button>
+    </div>
+    <p class="modal-secure">🔐 Pagamento 100% seguro · SSL criptografado</p>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast">
+  <div class="toast-title" id="toast-title">Sucesso!</div>
+  <div class="toast-msg" id="toast-msg">Operação realizada com sucesso.</div>
+</div>
+
+<script>
+  // ─── REVEAL ON SCROLL ───
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach((entry, i) => {
+      if (entry.isIntersecting) {
+        setTimeout(() => entry.target.classList.add('visible'), i * 80);
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  // ─── MODAL ───
+  function openModal(title, price) {
+    document.getElementById('modal-title').textContent = title + ' — Premium';
+    document.getElementById('modal-subtitle').textContent = `Você está adquirindo: "${title}". Complete seu cadastro para liberar o acesso imediato.`;
+    document.getElementById('modal-price').textContent = '· ' + price;
+    document.getElementById('modal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeModal() {
+    document.getElementById('modal').classList.remove('active');
+    document.body.style.overflow = '';
+  }
+
+  document.getElementById('modal').addEventListener('click', (e) => {
+    if (e.target === document.getElementById('modal')) closeModal();
+  });
+
+  // ─── TOAST ───
+  function showToast(title, msg) {
+    const t = document.getElementById('toast');
+    document.getElementById('toast-title').textContent = title;
+    document.getElementById('toast-msg').textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 4000);
+  }
+
+  // ─── DOWNLOAD FREE ───
+  function downloadFree(e, title) {
+    e.preventDefault();
+    showToast('Download iniciado! 📚', `"${title}" está sendo preparado. Obrigado!`);
+  }
+
+  // ─── SUBSCRIBE ───
+  function subscribe() {
+    const email = document.getElementById('emailInput').value.trim();
+    if (!email || !email.includes('@')) {
+      showToast('E-mail inválido', 'Por favor, insira um e-mail válido.');
+      return;
+    }
+    document.getElementById('emailInput').value = '';
+    showToast('Inscrição confirmada! ✦', 'Bem-vindo(a). Você receberá novidades em breve.');
+  }
+
+  // ─── PURCHASE ───
+  function completePurchase() {
+    closeModal();
+    setTimeout(() => showToast('Pedido recebido! ✨', 'Você receberá o acesso por e-mail em instantes.'), 400);
+  }
+
+  // ─── NAV SCROLL EFFECT ───
+  window.addEventListener('scroll', () => {
+    const nav = document.querySelector('nav');
+    if (window.scrollY > 60) {
+      nav.style.background = 'rgba(10,10,15,0.97)';
+      nav.style.borderBottom = '1px solid rgba(200,169,110,0.1)';
+    } else {
+      nav.style.background = 'linear-gradient(to bottom, rgba(10,10,15,0.95), transparent)';
+      nav.style.borderBottom = 'none';
+    }
+  });
+</script>
+</body>
+</html>
